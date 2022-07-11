@@ -12,7 +12,7 @@ const DataPost = () => {
       const data = res.data.map((item) => ({
         title: item.title,
         link: item.link,
-        image: item.photo,
+        image: item.image,
       }))
       setMainPosts(data.slice(5))
     })
