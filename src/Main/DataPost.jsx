@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AppBar, Box, Grid, Link, Toolbar, Typography } from '@mui/material'
-import { Container, display } from '@mui/system'
+import { Container } from '@mui/system'
 
 const DataPost = () => {
   const [mainPosts, setMainPosts] = useState([])
-
   useEffect(() => {
     const url = `https://crawlassk.herokuapp.com/`
 
