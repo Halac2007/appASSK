@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { Box } from '@mui/material'
 import axios from 'axios'
-import { AppBar, Box, Grid, Link, Toolbar, Typography } from '@mui/material'
-import { Container } from '@mui/system'
+import React, { useEffect, useState } from 'react'
+import Footer from '../Components/Footer'
 import Header from '../Components/Header'
+import ListPost from '../Components/ListPost'
 import TopPost from '../Components/TopPost'
 
 const DataPost = () => {
@@ -10,6 +11,8 @@ const DataPost = () => {
   const [mainTopPosts, setTopMainPosts] = useState([])
   const [mainCatePosts, setCatePosts] = useState([])
   const [MorePosts, setMorePosts] = useState([])
+  const [postSlider, setpostSlider] = useState([])
+
   useEffect(() => {
     const url = `https://crawlassk.herokuapp.com/`
 
@@ -20,17 +23,21 @@ const DataPost = () => {
         image: item.image,
         imagetop: item.imageTop,
       }))
-      setMainPosts(data.slice(16))
+      setMainPosts(data.slice(16, 40))
       setTopMainPosts(data.slice(4, 5))
       setCatePosts(data.slice(6, 9))
       setMorePosts(data.slice(9, 16))
+      setpostSlider(data.slice(1, 16))
     })
   }, [])
   return (
     <Box sx={{ backgroundColor: 'rgb(247, 247, 247)' }}>
       <Header />
 
-      <TopPost toppost={mainTopPosts} catepost={mainCatePosts} maincate={mainPosts} mainmore={MorePosts} />
+      <TopPost toppost={mainTopPosts} catepost={mainCatePosts} mainmore={MorePosts} />
+
+      <ListPost maincate={mainPosts} />
+      <Footer sx={{ backgroundColor: '#fsfdsaf' }} />
     </Box>
   )
 }
